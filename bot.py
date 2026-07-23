@@ -1,7 +1,5 @@
 print("VS Code funcionando c:")
 
-from dotenv import load_dotenv import os
-
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -25,5 +23,21 @@ async def hola(ctx):
 @bot.command()
 async def ping(ctx):
     await ctx.send("🏓 Pong!")
+
+@bot.command()
+async def info(ctx):
+    await ctx.send(
+        "🤖 *CyberBot*\n"
+        "Versión: 1.0\n"
+        "Creado por: GZsabornin27\n"
+        "Lenguaje: Python 🐍"
+    )
+
+@bot.command()
+async def server(ctx):
+    await ctx.send(
+        f"🌍 Servidor: {ctx.guild.name}\n"
+        f"👥 Miembros: {ctx.guild.member_count}"
+    )
 
 bot.run(os.getenv("TOKEN"))
