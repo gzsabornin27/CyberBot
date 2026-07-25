@@ -44,4 +44,16 @@ async def server(ctx):
 async def avatar(ctx):
     await ctx.send(ctx.author.display_avatar.url)
 
+@bot.command()
+async def ayuda(ctx):
+    await ctx.send(
+        "📋 *Comandos de CyberBot*\n"
+        "\n"
+        "👋 !hola - Saluda.\n"
+        "🏓 !ping - Comprueba si el bot responde.\n"
+        "ℹ️ !info - Información del bot.\n"
+        "🌍 !server - Muestra información del servidor.\n"
+        "🖼️ !avatar - Muestra tu foto de perfil."
+    )
+
 bot.run(os.getenv("TOKEN"))
