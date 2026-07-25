@@ -40,4 +40,8 @@ async def server(ctx):
         f"👥 Miembros: {ctx.guild.member_count}"
     )
 
+@bot.command()
+async def avatar(ctx):
+    await ctx.send(ctx.author.display_avatar.url)
+
 bot.run(os.getenv("TOKEN"))
