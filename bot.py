@@ -42,7 +42,15 @@ async def server(ctx):
 
 @bot.command()
 async def avatar(ctx):
-    await ctx.send(ctx.author.display_avatar.url)
+    embed = discord.Embed(
+        title=f"Avatar de {ctx.author.display_name}",
+        color=discord.Color.blue()
+    )
+
+    embed.set_image(url=ctx.author.display_avatar.url)
+    embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
 
 @bot.command()
 async def ayuda(ctx):
