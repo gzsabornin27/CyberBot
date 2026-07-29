@@ -64,4 +64,26 @@ async def ayuda(ctx):
         "🖼️ !avatar - Muestra tu foto de perfil."
     )
 
+@bot.command()
+async def usuario(ctx):
+    embed = discord.Embed(
+        title="👤 Información del usuario",
+        color=discord.Color.green()
+    )
+
+    embed.set_thumbnail(url=ctx.author.display_avatar.url)
+
+    embed.add_field(name="Nombre", value=ctx.author.name, inline=False)
+    embed.add_field(name="Nombre en el servidor", value=ctx.author.display_name, inline=False)
+    embed.add_field(name="ID", value=ctx.author.id, inline=False)
+    embed.add_field(
+        name="Se unió al servidor",
+        value=ctx.author.joined_at.strftime("%d/%m/%Y"),
+        inline=False
+    )
+
+    embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
+
 bot.run(os.getenv("TOKEN"))
