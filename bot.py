@@ -4,6 +4,7 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import os
+import random
 
 load_dotenv()
 
@@ -70,6 +71,20 @@ async def usuario(ctx):
         title="👤 Información del usuario",
         color=discord.Color.green()
     )
+
+@bot.command()
+async def moneda(ctx):
+    resultado = random.choice(["🪙 Cara", "🪙 Cruz"])
+
+    embed = discord.Embed(
+        title="Lanzamiento de moneda",
+        description=f"*Resultado:* {resultado}",
+        color=discord.Color.gold()
+    )
+
+    embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
 
     embed.set_thumbnail(url=ctx.author.display_avatar.url)
 
