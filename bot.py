@@ -123,4 +123,18 @@ async def ball8(ctx):
 
     await ctx.send(embed=embed)
 
+@bot.command()
+async def dado(ctx):
+    numero = random.randint(1, 6)
+
+    embed = discord.Embed(
+        title="🎲 Lanzamiento de dado",
+        description=f"¡Salió un *{numero}*!",
+        color=discord.Color.orange()
+    )
+
+    embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
+
 bot.run(os.getenv("TOKEN"))
