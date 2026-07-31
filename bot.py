@@ -87,7 +87,6 @@ async def moneda(ctx):
     await ctx.send(embed=embed)
 
     embed.set_thumbnail(url=ctx.author.display_avatar.url)
-
     embed.add_field(name="Nombre", value=ctx.author.name, inline=False)
     embed.add_field(name="Nombre en el servidor", value=ctx.author.display_name, inline=False)
     embed.add_field(name="ID", value=ctx.author.id, inline=False)
@@ -98,6 +97,29 @@ async def moneda(ctx):
     )
 
     embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def ball8(ctx):
+    respuestas = [
+        "🟢 Sí.",
+        "🔴 No.",
+        "🟡 Tal vez.",
+        "🤔 Es muy probable.",
+        "❌ No cuentes con ello.",
+        "✨ Definitivamente.",
+        "⏳ Pregunta de nuevo más tarde.",
+        "😅 Mejor no responder ahora."
+    ]
+
+    embed = discord.Embed(
+        title="🎱 Bola Mágica 8",
+        description=random.choice(respuestas),
+        color=discord.Color.purple()
+    )
+
+    embed.set_footer(text=f"Pregunta de {ctx.author.display_name}")
 
     await ctx.send(embed=embed)
 
