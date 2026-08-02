@@ -5,6 +5,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 import os
 import random
+from datetime import datetime
 
 load_dotenv()
 
@@ -131,6 +132,25 @@ async def dado(ctx):
         title="🎲 Lanzamiento de dado",
         description=f"¡Salió un *{numero}*!",
         color=discord.Color.orange()
+    )
+
+    embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def fecha(ctx):
+    ahora = datetime.now()
+
+    embed = discord.Embed(
+        title="📅 Fecha y hora",
+        color=discord.Color.teal()
+    )
+
+    embed.add_field(
+        name="Ahora mismo",
+        value=ahora.strftime("%d/%m/%Y - %H:%M:%S"),
+        inline=False
     )
 
     embed.set_footer(text="CyberBot 🤖")
