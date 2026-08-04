@@ -157,4 +157,28 @@ async def fecha(ctx):
 
     await ctx.send(embed=embed)
 
+@bot.command()
+async def serverinfo(ctx):
+    servidor = ctx.guild
+
+    embed = discord.Embed(
+        title="🌍 Información del servidor",
+        color=discord.Color.dark_blue()
+    )
+
+    embed.set_thumbnail(url=servidor.icon.url if servidor.icon else None)
+
+    embed.add_field(name="Nombre", value=servidor.name, inline=False)
+    embed.add_field(name="Dueño", value=servidor.owner, inline=False)
+    embed.add_field(name="Miembros", value=servidor.member_count, inline=False)
+    embed.add_field(
+        name="Creado el",
+        value=servidor.created_at.strftime("%d/%m/%Y"),
+        inline=False
+    )
+
+    embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
+
 bot.run(os.getenv("TOKEN"))
