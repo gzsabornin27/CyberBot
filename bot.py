@@ -1,5 +1,6 @@
 print("VS Code funcionando c:")
 
+import requests
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -8,6 +9,9 @@ import random
 from datetime import datetime
 
 load_dotenv()
+
+WEATHER_API_KEY=os.getenv("WEATHER_API_KEY")
+print(WEATHER_API_KEY)
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -178,6 +182,49 @@ async def serverinfo(ctx):
     )
 
     embed.set_footer(text="CyberBot 🤖")
+
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def clima(ctx, *, ciudad):
+
+    url = (
+        f"https://api.openweathermap.org/data/2.5/weather"
+        f"?q={ciudad}&appid={WEATHER_API_KEY}&units=metric&lang=es"
+    )
+
+    respuesta = requests.get(url)
+
+    if respuesta.status_code != 200:
+        await ctx.send("❌ No pude encontrar esa ciudad.")
+        return
+
+    datos = respuesta.json()
+
+    embed = discord.Embed(
+        title=f"🌦️ Clima en {datos['name']}",
+        color=discord.Color.blue()
+    )
+
+    embed.add_field(
+        name="🌡️ Temperatura",
+        value=f"{datos['main']['temp']} °C",
+        inline=True
+    )
+
+    embed.add_field(
+        name="☁️ Estado",
+        value=datos["weather"][0]["description"].capitalize(),
+        inline=True
+    )
+
+    embed.add_field(
+        name="💧 Humedad",
+        value=f"{datos['main']['humidity']}%",
+        inline=True
+    )
+
+    embed.set_footer(text="Datos: OpenWeather")
 
     await ctx.send(embed=embed)
 
