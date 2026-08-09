@@ -37,6 +37,27 @@ and the Discord bot token.
 
 Example:
 
-```env
+env
 TOKEN=your_discord_token
 WEATHER_API_KEY=your_openweather_api_key
+
+
+## 🚀 Running the Bot
+
+Install the required dependencies:
+
+bash
+pip install discord.py python-dotenv requests
+
+
+Then configure the .env file and run:
+
+bash
+python bot.py
+
+
+## 📚 Project Purpose
+
+This project was created to practice Python programming, APIs,
+environment variables, asynchronous programming, and Git/GitHub.
+
